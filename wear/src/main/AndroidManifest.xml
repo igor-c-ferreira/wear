@@ -8,13 +8,25 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".ui.activity.Principal"
+            android:name="br.com.pogamadores.tutoriais.wear.ui.activity.Principal"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver
+            android:name="br.com.pogamadores.tutoriais.wear.broadcast.NotificacoesReceiver"
+            android:enabled="true"
+            android:exported="true" >
+        </receiver>
+
+        <service
+            android:name="br.com.pogamadores.tutoriais.wear.service.NotificacoesService"
+            android:exported="false" >
+        </service>
     </application>
 
 </manifest>
