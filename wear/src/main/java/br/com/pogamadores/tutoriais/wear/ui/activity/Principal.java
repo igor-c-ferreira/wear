@@ -4,8 +4,10 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import br.com.pogamadores.tutoriais.wear.R;
+import br.com.pogamadores.tutoriais.wear.service.NotificacoesService;
 import br.com.pogamadores.tutoriais.wear.ui.fragment.HomeFragment;
 
 
@@ -40,5 +42,14 @@ public class Principal extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private View.OnClickListener AcaoEnviarNotificacao() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NotificacoesService.startActionForNotification(Principal.this, "");
+            }
+        };
     }
 }

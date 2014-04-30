@@ -4,50 +4,14 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.content.Context;
 
-/**
- * An {@link IntentService} subclass for handling asynchronous task requests in
- * a service on a separate handler thread.
- * <p>
- * TODO: Customize class - update intent actions, extra parameters and static
- * helper methods.
- */
 public class NotificacoesService extends IntentService {
-    // TODO: Rename actions, choose action names that describe tasks that this
-    // IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
-    private static final String ACTION_FOO = "br.com.pogamadores.tutoriais.wear.service.action.FOO";
-    private static final String ACTION_BAZ = "br.com.pogamadores.tutoriais.wear.service.action.BAZ";
+    private static final String NOTIFICATION_ACTION = "br.com.pogamadores.tutoriais.wear.services.action.NOTIFICATION";
+    private static final String PARAM_TYPE = "br.com.pogamadores.tutoriais.wear.services.action.TYPE";
 
-    // TODO: Rename parameters
-    private static final String EXTRA_PARAM1 = "br.com.pogamadores.tutoriais.wear.service.extra.PARAM1";
-    private static final String EXTRA_PARAM2 = "br.com.pogamadores.tutoriais.wear.service.extra.PARAM2";
-
-    /**
-     * Starts this service to perform action Foo with the given parameters. If
-     * the service is already performing a task this action will be queued.
-     *
-     * @see IntentService
-     */
-    // TODO: Customize helper method
-    public static void startActionFoo(Context context, String param1, String param2) {
+    public static void startActionForNotification(Context context, String type) {
         Intent intent = new Intent(context, NotificacoesService.class);
-        intent.setAction(ACTION_FOO);
-        intent.putExtra(EXTRA_PARAM1, param1);
-        intent.putExtra(EXTRA_PARAM2, param2);
-        context.startService(intent);
-    }
-
-    /**
-     * Starts this service to perform action Baz with the given parameters. If
-     * the service is already performing a task this action will be queued.
-     *
-     * @see IntentService
-     */
-    // TODO: Customize helper method
-    public static void startActionBaz(Context context, String param1, String param2) {
-        Intent intent = new Intent(context, NotificacoesService.class);
-        intent.setAction(ACTION_BAZ);
-        intent.putExtra(EXTRA_PARAM1, param1);
-        intent.putExtra(EXTRA_PARAM2, param2);
+        intent.setAction(NOTIFICATION_ACTION);
+        intent.putExtra(PARAM_TYPE, type);
         context.startService(intent);
     }
 
@@ -59,33 +23,14 @@ public class NotificacoesService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         if (intent != null) {
             final String action = intent.getAction();
-            if (ACTION_FOO.equals(action)) {
-                final String param1 = intent.getStringExtra(EXTRA_PARAM1);
-                final String param2 = intent.getStringExtra(EXTRA_PARAM2);
-                handleActionFoo(param1, param2);
-            } else if (ACTION_BAZ.equals(action)) {
-                final String param1 = intent.getStringExtra(EXTRA_PARAM1);
-                final String param2 = intent.getStringExtra(EXTRA_PARAM2);
-                handleActionBaz(param1, param2);
+            if(action.equals(NOTIFICATION_ACTION)) {
+                String type = intent.getStringExtra(PARAM_TYPE);
+                handleNotification(type);
             }
         }
     }
 
-    /**
-     * Handle action Foo in the provided background thread with the provided
-     * parameters.
-     */
-    private void handleActionFoo(String param1, String param2) {
-        // TODO: Handle action Foo
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
+    private void handleNotification(String type) {
 
-    /**
-     * Handle action Baz in the provided background thread with the provided
-     * parameters.
-     */
-    private void handleActionBaz(String param1, String param2) {
-        // TODO: Handle action Baz
-        throw new UnsupportedOperationException("Not yet implemented");
     }
 }
