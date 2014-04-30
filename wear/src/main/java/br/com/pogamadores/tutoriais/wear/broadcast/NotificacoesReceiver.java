@@ -17,6 +17,7 @@ public class NotificacoesReceiver extends BroadcastReceiver {
             "br.com.pogamadores.tutoriais.wear.receiver.action.EXEMPLO_ACAO";
 
     public static PendingIntent exemploPedingIntent(Context context, int messageResId) {
+
         Intent intent = new Intent(EXEMPLO_ACAO)
                 .setClass(context, NotificacoesReceiver.class);
         intent.putExtra(EXTRA_MENSAGEM, context.getString(messageResId));
