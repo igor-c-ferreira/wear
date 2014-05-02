@@ -5,5 +5,25 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mensagem_retorno">Intent selecionada</string>
+    <string name="mensagem_exclusao">Notificação excluída</string>
+    <string name="titulo_notificacao">Exemplo</string>
+    <string name="texto_exemplo">Texto de exemplo</string>
+    <string name="notificacao_simples">Notificação Simples</string>
+    <string name="texto_grande"><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquet, lorem ac cursus fermentum, nisi est lacinia dui, quis rhoncus nulla risus a nulla. Nulla facilisi. Suspendisse auctor, velit in viverra blandit, lacus nibh sagittis lectus, id egestas leo lectus eu nisl. Duis orci nunc, condimentum nec massa nec, egestas aliquet sapien. Proin ut lectus sed diam dignissim dignissim. Aenean quis ornare diam. Nunc pharetra interdum vestibulum. Vivamus interdum scelerisque mauris.
 
+Integer ut ornare quam. Cras vitae volutpat orci. Nullam fermentum turpis ante. Nulla fermentum odio ut mi commodo scelerisque. Vestibulum venenatis sem sit amet egestas feugiat. Aenean egestas consectetur scelerisque. Aenean vestibulum lacinia luctus. Duis aliquam pulvinar nisi, non dignissim orci tempor et. Suspendisse egestas iaculis dui, a lacinia dui euismod vitae. Etiam gravida leo ut euismod sollicitudin. Sed euismod rhoncus congue. Praesent accumsan metus dolor, id lacinia quam semper sodales.
+
+Nunc consequat fringilla ante, id laoreet augue mollis vitae. Praesent a blandit elit, id rhoncus purus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent odio tortor, commodo sed placerat eu, sagittis et tortor. Nulla sed ultricies nisi. Cras quis diam gravida, posuere felis in, ultricies dui. Pellentesque luctus semper urna, sed porta orci dignissim in. Maecenas aliquam ipsum nec orci ultrices, id vulputate quam tempor. Integer faucibus quis risus vel lobortis. Praesent malesuada, justo in tempus iaculis, nisl velit mollis enim, eget consequat odio felis non est. Sed sollicitudin malesuada semper. Ut porttitor laoreet mattis. Donec nec lectus posuere, elementum velit fringilla, elementum quam.
+
+Vivamus dignissim, magna eget luctus feugiat, lacus mi lobortis libero, ac vehicula enim magna ultricies orci. Maecenas vitae magna elementum, dapibus felis elementum, tincidunt lacus. Sed vestibulum quis odio vitae porta. Suspendisse blandit sem sit amet diam fermentum molestie. Cras pharetra blandit sapien id bibendum. In sagittis ligula ligula, eu malesuada tortor egestas ut. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Ut facilisis, nisl at feugiat hendrerit, mauris augue fermentum odio, id porta leo augue a mi. Proin in massa adipiscing diam condimentum convallis. In ante odio, luctus vitae nisi sed, posuere tempor nulla.
+
+Aliquam ut nibh metus. Vivamus sed mauris egestas, lacinia sem ut, varius purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus turpis quam, dapibus viverra urna rutrum ac. Cras adipiscing dui dolor, a imperdiet velit ullamcorper non. Sed at enim molestie, tincidunt velit sed, blandit urna. Maecenas eu cursus sapien. Sed id commodo massa, sed interdum erat. Suspendisse sit amet tempor dui.]]]></string>
+    <string name="notificacao_texto">Notificação com texto grande</string>
+    <string name="notificacao_imagem">Notificação com imagem</string>
+    <string name="titulo_acao">Resposta</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+    <string name="exemplo_acao">Exemplo Ação</string>
+    <string name="notificacao_acao">Notificação com ação</string>
 </resources>

@@ -1,10 +1,19 @@
 package br.com.pogamadores.tutoriais.wear.service;
 
 import android.app.IntentService;
-import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.Context;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
+import android.os.Looper;
 import android.preview.support.v4.app.NotificationManagerCompat;
+import android.widget.Toast;
+
+import br.com.pogamadores.tutoriais.wear.notificacao.NotificacaoBuilder;
 
 public class NotificacoesService extends IntentService {
     private static final String ACAO_NOTIFICACAO = "br.com.pogamadores.tutoriais.wear.services.action.ACAO_NOTIFICACAO";
@@ -34,11 +43,6 @@ public class NotificacoesService extends IntentService {
 
     private void disparararNotificacao(String type) {
         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
-        managerCompat.cancelAll();
-        managerCompat.notify(0,construirNotificacao(type));
-    }
-
-    private Notification construirNotificacao(String type) {
-        return null;
+        managerCompat.notify(0, NotificacaoBuilder.buildNotificacao(this,type));
     }
 }

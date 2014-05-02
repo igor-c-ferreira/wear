@@ -4,7 +4,10 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.preview.support.v4.app.NotificationManagerCompat;
 import android.widget.Toast;
+
+import br.com.pogamadores.tutoriais.wear.R;
 
 public class NotificacoesReceiver extends BroadcastReceiver {
 
@@ -17,12 +20,12 @@ public class NotificacoesReceiver extends BroadcastReceiver {
             "br.com.pogamadores.tutoriais.wear.receiver.action.EXEMPLO_ACAO";
 
     public static PendingIntent exemploPedingIntent(Context context, int messageResId) {
-
         Intent intent = new Intent(EXEMPLO_ACAO)
                 .setClass(context, NotificacoesReceiver.class);
         intent.putExtra(EXTRA_MENSAGEM, context.getString(messageResId));
-        return PendingIntent.getBroadcast(context, messageResId, intent,
+        PendingIntent pendingIntent =  PendingIntent.getBroadcast(context, messageResId, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
+        return pendingIntent;
     }
 
     public NotificacoesReceiver(){}
@@ -40,6 +43,7 @@ public class NotificacoesReceiver extends BroadcastReceiver {
 
             if(mensagem != null && mensagem.trim().length() > 0)
                 Toast.makeText(context, mensagem, Toast.LENGTH_SHORT).show();
+            NotificationManagerCompat.from(context).cancelAll();
         }
     }
 }
