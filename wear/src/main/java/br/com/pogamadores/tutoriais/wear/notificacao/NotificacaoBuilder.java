@@ -166,7 +166,7 @@ public class NotificacaoBuilder
     }
 
     /**
-     *
+     * <p>Cria uma {@link android.app.Notification} simples</p>
      * @param context Contexto que executa a ação
      * @return {@link android.app.Notification} devidamente configurado
      */
@@ -176,7 +176,8 @@ public class NotificacaoBuilder
     }
 
     /**
-     *
+     * <p>Cria uma {@link android.app.Notification}
+     * com o estilo {@link android.support.v4.app.NotificationCompat.BigTextStyle}</p>
      * @param context Contexto que executa a ação
      * @return {@link android.app.Notification} devidamente configurado
      */
@@ -194,7 +195,8 @@ public class NotificacaoBuilder
     }
 
     /**
-     *
+     * <p>Cria uma {@link android.app.Notification}
+     * com o estilo {@link android.support.v4.app.NotificationCompat.BigPictureStyle}</p>
      * @param context Contexto que executa a ação
      * @return {@link android.app.Notification} devidamente configurado
      */
@@ -213,7 +215,10 @@ public class NotificacaoBuilder
     }
 
     /**
-     *
+     * <p>Cria uma {@link android.app.Notification}
+     * com uma {@link android.preview.support.wearable.notifications.RemoteInput} entrada
+     * com múltiplas escolhas como
+     * {@link android.preview.support.wearable.notifications.WearableNotifications.Action} ação de resposta</p>
      * @param context Contexto que executa a ação
      * @return {@link android.app.Notification} devidamente configurado
      */
@@ -237,7 +242,10 @@ public class NotificacaoBuilder
     }
 
     /**
-     *
+     * <p>Cria uma {@link android.app.Notification}
+     * com uma {@link android.preview.support.wearable.notifications.RemoteInput} entrada
+     * simples (texto aberto) como
+     * {@link android.preview.support.wearable.notifications.WearableNotifications.Action} ação de resposta</p>
      * @param context Contexto que executa a ação
      * @return {@link android.app.Notification} devidamente configurado
      */
