@@ -1,17 +1,9 @@
 package br.com.pogamadores.tutoriais.wear.service;
 
 import android.app.IntentService;
-import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.Context;
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
-import android.os.Looper;
 import android.preview.support.v4.app.NotificationManagerCompat;
-import android.widget.Toast;
 
 import br.com.pogamadores.tutoriais.wear.notificacao.NotificacaoBuilder;
 

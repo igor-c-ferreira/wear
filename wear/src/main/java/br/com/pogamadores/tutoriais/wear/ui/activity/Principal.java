@@ -6,8 +6,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import br.com.pogamadores.tutoriais.wear.R;
-import br.com.pogamadores.tutoriais.wear.notificacao.NotificacaoBuilder;
-import br.com.pogamadores.tutoriais.wear.service.NotificacoesService;
 import br.com.pogamadores.tutoriais.wear.ui.fragment.HomeFragment;
 
 

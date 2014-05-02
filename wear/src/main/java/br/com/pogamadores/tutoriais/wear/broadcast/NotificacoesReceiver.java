@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.preview.support.v4.app.NotificationManagerCompat;
 import android.widget.Toast;
 
-import br.com.pogamadores.tutoriais.wear.R;
-
 public class NotificacoesReceiver extends BroadcastReceiver {
 
     public static final String EXTRA_MENSAGEM =
