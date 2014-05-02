@@ -12,13 +12,20 @@ import br.com.pogamadores.tutoriais.wear.broadcast.NotificacoesReceiver;
 
 public class NotificacaoBuilder
 {
-    public static final String NOTIFICACAO_SIMPLES = "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_SIMPLES";
-    public static final String NOTIFICACAO_BIG_TEXT = "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_BIG_TEXT";
-    public static final String NOTIFICACAO_MULTIPLAS_PAGINAS = "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_MULTIPLAS_PAGINAS";
-    public static final String NOTIFICACAO_INBOX = "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_INBOX";
-    public static final String NOTIFICACAO_IMAGEM = "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_IMAGEM";
-    public static final String NOTIFICACAO_ACAO = "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_ACAO";
-    public static final String NOTIFICACAO_ACAO_ABERTA = "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_ACAO_ABERTA";
+    public static final String NOTIFICACAO_SIMPLES =
+            "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_SIMPLES";
+    public static final String NOTIFICACAO_BIG_TEXT =
+            "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_BIG_TEXT";
+    public static final String NOTIFICACAO_MULTIPLAS_PAGINAS =
+            "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_MULTIPLAS_PAGINAS";
+    public static final String NOTIFICACAO_INBOX =
+            "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_INBOX";
+    public static final String NOTIFICACAO_IMAGEM =
+            "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_IMAGEM";
+    public static final String NOTIFICACAO_ACAO =
+            "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_ACAO";
+    public static final String NOTIFICACAO_ACAO_ABERTA =
+            "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_ACAO_ABERTA";
 
     public static Notification buildNotificacao(Context context, String type) {
         Notification notification;
@@ -78,7 +85,8 @@ public class NotificacaoBuilder
                 .setContentText(context.getString(R.string.segundo_item))
                 .build();
 
-        return finalizarNotificacao(builder, null, new Notification[]{segundaPagina, terceiraPagina});
+        return finalizarNotificacao(builder, null,
+                new Notification[]{segundaPagina, terceiraPagina});
     }
 
     protected static NotificationCompat.Builder construirBuilderSimples(Context context) {
@@ -86,13 +94,18 @@ public class NotificacaoBuilder
                 .setContentText(context.getResources().getString(R.string.texto_exemplo))
                 .setContentTitle(context.getResources().getString(R.string.titulo_notificacao))
                 .setSmallIcon(R.drawable.ic_launcher)
-                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher))
-                .setContentIntent(NotificacoesReceiver.exemploPedingIntent(context, R.string.mensagem_retorno))
-                .setDeleteIntent(NotificacoesReceiver.exemploPedingIntent(context, R.string.mensagem_exclusao));
+                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
+                        R.drawable.ic_launcher))
+                .setContentIntent(NotificacoesReceiver.exemploPedingIntent(context,
+                        R.string.mensagem_retorno))
+                .setDeleteIntent(NotificacoesReceiver.exemploPedingIntent(context,
+                        R.string.mensagem_exclusao));
         return builder;
     }
 
-    protected static Notification finalizarNotificacao(NotificationCompat.Builder builder, WearableNotifications.Action acao, Notification[] paginas) {
+    protected static Notification finalizarNotificacao(NotificationCompat.Builder builder,
+                                                       WearableNotifications.Action acao,
+                                                       Notification[] paginas) {
 
         builder.setPriority(Notification.PRIORITY_DEFAULT);
 
@@ -158,7 +171,8 @@ public class NotificacaoBuilder
                         context.getString(R.string.nao)})
                 .build();
 
-        WearableNotifications.Action acao = new WearableNotifications.Action.Builder(R.drawable.ic_full_reply,
+        WearableNotifications.Action acao = new WearableNotifications.Action.Builder(
+                R.drawable.ic_full_reply,
                 context.getString(R.string.exemplo_acao),
                 NotificacoesReceiver.exemploPedingIntent(context,R.string.exemplo_acao))
                 .addRemoteInput(input)
@@ -174,7 +188,8 @@ public class NotificacaoBuilder
                 .setLabel(context.getString(R.string.titulo_acao))
                 .build();
 
-        WearableNotifications.Action acao = new WearableNotifications.Action.Builder(R.drawable.ic_full_reply,
+        WearableNotifications.Action acao = new WearableNotifications.Action.Builder(
+                R.drawable.ic_full_reply,
                 context.getString(R.string.exemplo_acao),
                 NotificacoesReceiver.exemploPedingIntent(context,R.string.exemplo_acao))
                 .addRemoteInput(entrada)

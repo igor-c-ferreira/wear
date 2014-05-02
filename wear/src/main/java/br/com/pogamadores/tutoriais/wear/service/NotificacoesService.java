@@ -8,8 +8,10 @@ import android.preview.support.v4.app.NotificationManagerCompat;
 import br.com.pogamadores.tutoriais.wear.notificacao.NotificacaoBuilder;
 
 public class NotificacoesService extends IntentService {
-    private static final String ACAO_NOTIFICACAO = "br.com.pogamadores.tutoriais.wear.services.acao.ACAO_NOTIFICACAO";
-    private static final String PARAMETRO_TIPO = "br.com.pogamadores.tutoriais.wear.services.acao.PARAMETRO_TIPO";
+    private static final String ACAO_NOTIFICACAO =
+            "br.com.pogamadores.tutoriais.wear.services.acao.ACAO_NOTIFICACAO";
+    private static final String PARAMETRO_TIPO =
+            "br.com.pogamadores.tutoriais.wear.services.acao.PARAMETRO_TIPO";
 
     public static void startActionForNotification(Context context, String type) {
         Intent intent = new Intent(context, NotificacoesService.class);
