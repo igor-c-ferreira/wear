@@ -14,6 +14,8 @@ public class NotificacaoBuilder
 {
     public static final String NOTIFICACAO_SIMPLES = "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_SIMPLES";
     public static final String NOTIFICACAO_BIG_TEXT = "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_BIG_TEXT";
+    public static final String NOTIFICACAO_MULTIPLAS_PAGINAS = "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_MULTIPLAS_PAGINAS";
+    public static final String NOTIFICACAO_INBOX = "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_INBOX";
     public static final String NOTIFICACAO_IMAGEM = "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_IMAGEM";
     public static final String NOTIFICACAO_ACAO = "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_ACAO";
     public static final String NOTIFICACAO_ACAO_ABERTA = "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_ACAO_ABERTA";
@@ -26,6 +28,12 @@ public class NotificacaoBuilder
                 break;
             case NOTIFICACAO_BIG_TEXT:
                 notification = buildNotificacaoBigText(context);
+                break;
+            case NOTIFICACAO_MULTIPLAS_PAGINAS:
+                notification = buildNotificacaoMultiplasPaginas(context);
+                break;
+            case NOTIFICACAO_INBOX:
+                notification = buildNotificacaoInbox(context);
                 break;
             case NOTIFICACAO_IMAGEM:
                 notification = buildNotificacaoImagem(context);
@@ -43,6 +51,36 @@ public class NotificacaoBuilder
         return notification;
     }
 
+    private static Notification buildNotificacaoInbox(Context context) {
+        NotificationCompat.Builder builder = construirBuilderSimples(context);
+
+        NotificationCompat.InboxStyle style = new NotificationCompat.InboxStyle();
+        style.addLine(context.getString(R.string.primeiro_item));
+        style.addLine(context.getString(R.string.segundo_item));
+        style.setBigContentTitle(context.getString(R.string.titulo_notificacao));
+        style.setSummaryText(context.getString(R.string.texto_exemplo));
+
+        builder.setStyle(style);
+
+        return finalizarNotificacao(builder, null, null);
+    }
+
+    private static Notification buildNotificacaoMultiplasPaginas(Context context) {
+        NotificationCompat.Builder builder = construirBuilderSimples(context);
+
+        Notification segundaPagina = new NotificationCompat.Builder(context)
+                .setContentTitle(context.getString(R.string.titulo_notificacao))
+                .setContentText(context.getString(R.string.primeiro_item))
+                .build();
+
+        Notification terceiraPagina = new NotificationCompat.Builder(context)
+                .setContentTitle(context.getString(R.string.titulo_notificacao))
+                .setContentText(context.getString(R.string.segundo_item))
+                .build();
+
+        return finalizarNotificacao(builder, null, new Notification[]{segundaPagina, terceiraPagina});
+    }
+
     protected static NotificationCompat.Builder construirBuilderSimples(Context context) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
                 .setContentText(context.getResources().getString(R.string.texto_exemplo))
@@ -54,10 +92,18 @@ public class NotificacaoBuilder
         return builder;
     }
 
-    protected static Notification finalizarNotificacao(NotificationCompat.Builder builder, WearableNotifications.Action acao) {
+    protected static Notification finalizarNotificacao(NotificationCompat.Builder builder, WearableNotifications.Action acao, Notification[] paginas) {
         WearableNotifications.Builder wearBuilder = new WearableNotifications.Builder(builder);
         wearBuilder.setLocalOnly(false);
-        if(acao != null)wearBuilder.addAction(acao);
+        if(acao != null) {
+            wearBuilder.addAction(acao);
+        }
+
+        if(paginas != null) {
+            for(Notification pagina : paginas) {
+                wearBuilder.addPage(pagina);
+            }
+        }
 
         Notification notification = wearBuilder.build();
 
@@ -70,7 +116,7 @@ public class NotificacaoBuilder
 
     protected static Notification buildNotificacaoSimples(Context context) {
         NotificationCompat.Builder builder = construirBuilderSimples(context);
-        return finalizarNotificacao(builder, null);
+        return finalizarNotificacao(builder, null, null);
     }
 
     protected static Notification buildNotificacaoBigText(Context context) {
@@ -83,7 +129,7 @@ public class NotificacaoBuilder
 
         builder.setStyle(style);
 
-        return finalizarNotificacao(builder, null);
+        return finalizarNotificacao(builder, null, null);
     }
 
     protected static Notification buildNotificacaoImagem(Context context) {
@@ -97,7 +143,7 @@ public class NotificacaoBuilder
 
         builder.setStyle(style);
 
-        return finalizarNotificacao(builder, null);
+        return finalizarNotificacao(builder, null, null);
     }
 
     protected static Notification buildNotificacaoAcao(Context context) {
@@ -115,7 +161,7 @@ public class NotificacaoBuilder
                 .addRemoteInput(input)
                 .build();
 
-        return finalizarNotificacao(builder, acao);
+        return finalizarNotificacao(builder, acao, null);
     }
 
     protected static Notification buildNotificacaoAcaoAberta(Context context) {
@@ -131,7 +177,7 @@ public class NotificacaoBuilder
                 .addRemoteInput(entrada)
                 .build();
 
-        return finalizarNotificacao(builder, acao);
+        return finalizarNotificacao(builder, acao, null);
     }
 
 }

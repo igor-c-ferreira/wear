@@ -24,6 +24,20 @@
         android:padding="10dp"/>
 
     <Button
+        android:id="@+id/btn_notificacao_paginas"
+        android:text="@string/notificacao_paginas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"/>
+
+    <Button
+        android:id="@+id/btn_notificacao_inbox"
+        android:text="@string/notificacao_inbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"/>
+
+    <Button
         android:id="@+id/btn_notificacao_imagem"
         android:text="@string/notificacao_imagem"
         android:layout_width="wrap_content"
