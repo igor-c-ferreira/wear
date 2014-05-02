@@ -10,6 +10,9 @@ import android.support.v4.app.NotificationCompat;
 import br.com.pogamadores.tutoriais.wear.R;
 import br.com.pogamadores.tutoriais.wear.broadcast.NotificacoesReceiver;
 
+/**
+ * Factory responsável pela criação das instâncias das {@link android.app.Notification}
+ */
 public class NotificacaoBuilder
 {
     public static final String NOTIFICACAO_SIMPLES =
@@ -27,9 +30,15 @@ public class NotificacaoBuilder
     public static final String NOTIFICACAO_ACAO_ABERTA =
             "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_ACAO_ABERTA";
 
-    public static Notification buildNotificacao(Context context, String type) {
+    /**
+     * Método estático para construção da {@link android.app.Notification}
+     * @param context   Contexto que executa a ação
+     * @param tipo      Tipo da notificação que será gerada
+     * @return  {@link android.app.Notification} devidamente configurada
+     */
+    public static Notification buildNotificacao(Context context, String tipo) {
         Notification notification;
-        switch (type) {
+        switch (tipo) {
             case NOTIFICACAO_SIMPLES:
                 notification = buildNotificacaoSimples(context);
                 break;
@@ -58,6 +67,12 @@ public class NotificacaoBuilder
         return notification;
     }
 
+    /**
+     * <p>Método que cria a {@link android.app.Notification}
+     * com o tipo {@link android.support.v4.app.NotificationCompat.InboxStyle}</p>
+     * @param context   Contexto que executa a ação
+     * @return  {@link android.app.Notification} devidamente configurado
+     */
     private static Notification buildNotificacaoInbox(Context context) {
         NotificationCompat.Builder builder = construirBuilderSimples(context);
 
@@ -72,6 +87,11 @@ public class NotificacaoBuilder
         return finalizarNotificacao(builder, null, null);
     }
 
+    /**
+     * <p>Método que cria a {@link android.app.Notification} com múltiplas páginas</p>
+     * @param context   Contexto que executa a ação
+     * @return  {@link android.app.Notification} devidamente configurado
+     */
     private static Notification buildNotificacaoMultiplasPaginas(Context context) {
         NotificationCompat.Builder builder = construirBuilderSimples(context);
 
@@ -89,6 +109,12 @@ public class NotificacaoBuilder
                 new Notification[]{segundaPagina, terceiraPagina});
     }
 
+    /**
+     * <p>Constrói o {@link android.support.v4.app.NotificationCompat.Builder}
+     *  com os elementos básicos da {@link android.app.Notification}</p>
+     * @param context   Contexto que executa a ação
+     * @return  {@link android.app.Notification} devidamente configurado
+     */
     protected static NotificationCompat.Builder construirBuilderSimples(Context context) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
                 .setContentText(context.getResources().getString(R.string.texto_exemplo))
@@ -96,13 +122,22 @@ public class NotificacaoBuilder
                 .setSmallIcon(R.drawable.ic_launcher)
                 .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
                         R.drawable.ic_launcher))
-                .setContentIntent(NotificacoesReceiver.exemploPedingIntent(context,
+                .setContentIntent(NotificacoesReceiver.exemploPendingIntent(context,
                         R.string.mensagem_retorno))
-                .setDeleteIntent(NotificacoesReceiver.exemploPedingIntent(context,
+                .setDeleteIntent(NotificacoesReceiver.exemploPendingIntent(context,
                         R.string.mensagem_exclusao));
         return builder;
     }
 
+    /**
+     * <p>Finaliza o {@link android.support.v4.app.NotificationCompat.Builder}
+     * , adicionando as {@link android.preview.support.wearable.notifications.WearableNotifications.Action}
+     *  e as {@link android.app.Notification} que serão adicionadas como página</p>
+     * @param builder   {@link android.support.v4.app.NotificationCompat.Builder} previamente configurado
+     * @param acao      {@link android.preview.support.wearable.notifications.WearableNotifications.Action} que será usada como resposta
+     * @param paginas   {@link android.app.Notification} que serão usadas como páginas a mais
+     * @return  {@link android.app.Notification} devidamente configurado
+     */
     protected static Notification finalizarNotificacao(NotificationCompat.Builder builder,
                                                        WearableNotifications.Action acao,
                                                        Notification[] paginas) {
@@ -130,11 +165,21 @@ public class NotificacaoBuilder
         return notification;
     }
 
+    /**
+     *
+     * @param context Contexto que executa a ação
+     * @return {@link android.app.Notification} devidamente configurado
+     */
     protected static Notification buildNotificacaoSimples(Context context) {
         NotificationCompat.Builder builder = construirBuilderSimples(context);
         return finalizarNotificacao(builder, null, null);
     }
 
+    /**
+     *
+     * @param context Contexto que executa a ação
+     * @return {@link android.app.Notification} devidamente configurado
+     */
     protected static Notification buildNotificacaoBigText(Context context) {
         NotificationCompat.Builder builder = construirBuilderSimples(context);
 
@@ -148,6 +193,11 @@ public class NotificacaoBuilder
         return finalizarNotificacao(builder, null, null);
     }
 
+    /**
+     *
+     * @param context Contexto que executa a ação
+     * @return {@link android.app.Notification} devidamente configurado
+     */
     protected static Notification buildNotificacaoImagem(Context context) {
         NotificationCompat.Builder builder = construirBuilderSimples(context);
 
@@ -162,6 +212,11 @@ public class NotificacaoBuilder
         return finalizarNotificacao(builder, null, null);
     }
 
+    /**
+     *
+     * @param context Contexto que executa a ação
+     * @return {@link android.app.Notification} devidamente configurado
+     */
     protected static Notification buildNotificacaoAcao(Context context) {
         NotificationCompat.Builder builder = construirBuilderSimples(context);
 
@@ -174,13 +229,18 @@ public class NotificacaoBuilder
         WearableNotifications.Action acao = new WearableNotifications.Action.Builder(
                 R.drawable.ic_full_reply,
                 context.getString(R.string.exemplo_acao),
-                NotificacoesReceiver.exemploPedingIntent(context,R.string.exemplo_acao))
+                NotificacoesReceiver.exemploPendingIntent(context, R.string.exemplo_acao))
                 .addRemoteInput(input)
                 .build();
 
         return finalizarNotificacao(builder, acao, null);
     }
 
+    /**
+     *
+     * @param context Contexto que executa a ação
+     * @return {@link android.app.Notification} devidamente configurado
+     */
     protected static Notification buildNotificacaoAcaoAberta(Context context) {
         NotificationCompat.Builder builder = construirBuilderSimples(context);
 
@@ -191,7 +251,7 @@ public class NotificacaoBuilder
         WearableNotifications.Action acao = new WearableNotifications.Action.Builder(
                 R.drawable.ic_full_reply,
                 context.getString(R.string.exemplo_acao),
-                NotificacoesReceiver.exemploPedingIntent(context,R.string.exemplo_acao))
+                NotificacoesReceiver.exemploPendingIntent(context, R.string.exemplo_acao))
                 .addRemoteInput(entrada)
                 .build();
 

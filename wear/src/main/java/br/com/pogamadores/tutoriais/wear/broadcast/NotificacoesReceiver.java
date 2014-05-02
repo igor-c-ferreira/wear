@@ -7,6 +7,10 @@ import android.content.Intent;
 import android.preview.support.v4.app.NotificationManagerCompat;
 import android.widget.Toast;
 
+/**
+ * Simples implementação de um {@link android.content.BroadcastReceiver} para tratar as respostas
+ * das notificações.
+ */
 public class NotificacoesReceiver extends BroadcastReceiver {
 
     public static final String EXTRA_MENSAGEM =
@@ -16,7 +20,13 @@ public class NotificacoesReceiver extends BroadcastReceiver {
     public static final String EXEMPLO_ACAO =
             "br.com.pogamadores.tutoriais.wear.receiver.acao.EXEMPLO_ACAO";
 
-    public static PendingIntent exemploPedingIntent(Context context, int messageResId) {
+    /**
+     * Método que cria um {@link android.app.PendingIntent} com as informações necessárias
+     * @param context           Contexto que executa a ação
+     * @param messageResId      Id da mensagem de texto que será usada como resposta
+     * @return  Instância do {@link android.app.PendingIntent} configurada
+     */
+    public static PendingIntent exemploPendingIntent(Context context, int messageResId) {
         Intent intent = new Intent(EXEMPLO_ACAO)
                 .setClass(context, NotificacoesReceiver.class);
         intent.putExtra(EXTRA_MENSAGEM, context.getString(messageResId));
@@ -42,6 +52,9 @@ public class NotificacoesReceiver extends BroadcastReceiver {
 
             if(mensagem != null && mensagem.trim().length() > 0)
                 Toast.makeText(context, mensagem, Toast.LENGTH_SHORT).show();
+
+            /**
+             * Cancela todas as {@link android.app.Notification} relacionadas à aplicação.*/
             NotificationManagerCompat.from(context).cancelAll();
         }
     }
