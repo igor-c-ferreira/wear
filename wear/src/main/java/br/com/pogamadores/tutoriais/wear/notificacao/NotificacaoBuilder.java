@@ -12,11 +12,11 @@ import br.com.pogamadores.tutoriais.wear.broadcast.NotificacoesReceiver;
 
 public class NotificacaoBuilder
 {
-    public static final String NOTIFICACAO_SIMPLES = "br.com.pogamadores.tutoriais.wear.notificacao.type.NOTIFICACAO_SIMPLES";
-    public static final String NOTIFICACAO_BIG_TEXT = "br.com.pogamadores.tutoriais.wear.notificacao.type.NOTIFICACAO_BIG_TEXT";
-    public static final String NOTIFICACAO_IMAGEM = "br.com.pogamadores.tutoriais.wear.notificacao.type.NOTIFICACAO_IMAGEM";
-    public static final String NOTIFICACAO_ACAO = "br.com.pogamadores.tutoriais.wear.notificacao.type.NOTIFICACAO_ACAO";
-    public static final String NOTIFICACAO_ACAO_ABERTA = "br.com.pogamadores.tutoriais.wear.notificacao.type.NOTIFICACAO_ACAO_ABERTA";
+    public static final String NOTIFICACAO_SIMPLES = "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_SIMPLES";
+    public static final String NOTIFICACAO_BIG_TEXT = "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_BIG_TEXT";
+    public static final String NOTIFICACAO_IMAGEM = "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_IMAGEM";
+    public static final String NOTIFICACAO_ACAO = "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_ACAO";
+    public static final String NOTIFICACAO_ACAO_ABERTA = "br.com.pogamadores.tutoriais.wear.notificacao.tipo.NOTIFICACAO_ACAO_ABERTA";
 
     public static Notification buildNotificacao(Context context, String type) {
         Notification notification;
@@ -54,10 +54,10 @@ public class NotificacaoBuilder
         return builder;
     }
 
-    protected static Notification finalizarNotificacao(NotificationCompat.Builder builder, WearableNotifications.Action action) {
+    protected static Notification finalizarNotificacao(NotificationCompat.Builder builder, WearableNotifications.Action acao) {
         WearableNotifications.Builder wearBuilder = new WearableNotifications.Builder(builder);
         wearBuilder.setLocalOnly(false);
-        if(action != null)wearBuilder.addAction(action);
+        if(acao != null)wearBuilder.addAction(acao);
 
         Notification notification = wearBuilder.build();
 
@@ -109,29 +109,29 @@ public class NotificacaoBuilder
                         context.getString(R.string.nao)})
                 .build();
 
-        WearableNotifications.Action action = new WearableNotifications.Action.Builder(R.drawable.ic_full_reply,
+        WearableNotifications.Action acao = new WearableNotifications.Action.Builder(R.drawable.ic_full_reply,
                 context.getString(R.string.exemplo_acao),
                 NotificacoesReceiver.exemploPedingIntent(context,R.string.exemplo_acao))
                 .addRemoteInput(input)
                 .build();
 
-        return finalizarNotificacao(builder, action);
+        return finalizarNotificacao(builder, acao);
     }
 
     protected static Notification buildNotificacaoAcaoAberta(Context context) {
         NotificationCompat.Builder builder = construirBuilderSimples(context);
 
-        RemoteInput input = new RemoteInput.Builder(NotificacoesReceiver.EXTRA_RETORNO)
+        RemoteInput entrada = new RemoteInput.Builder(NotificacoesReceiver.EXTRA_RETORNO)
                 .setLabel(context.getString(R.string.titulo_acao))
                 .build();
 
-        WearableNotifications.Action action = new WearableNotifications.Action.Builder(R.drawable.ic_full_reply,
+        WearableNotifications.Action acao = new WearableNotifications.Action.Builder(R.drawable.ic_full_reply,
                 context.getString(R.string.exemplo_acao),
                 NotificacoesReceiver.exemploPedingIntent(context,R.string.exemplo_acao))
-                .addRemoteInput(input)
+                .addRemoteInput(entrada)
                 .build();
 
-        return finalizarNotificacao(builder, action);
+        return finalizarNotificacao(builder, acao);
     }
 
 }

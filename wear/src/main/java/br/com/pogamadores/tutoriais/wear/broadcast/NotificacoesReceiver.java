@@ -15,9 +15,8 @@ public class NotificacoesReceiver extends BroadcastReceiver {
             "br.com.pogamadores.tutoriais.wear.receiver.extra.EXTRA_MENSAGEM";
     public static final String EXTRA_RETORNO =
             "br.com.pogamadores.tutoriais.wear.receiver.extra.EXTRA_RETORNO";
-
     public static final String EXEMPLO_ACAO =
-            "br.com.pogamadores.tutoriais.wear.receiver.action.EXEMPLO_ACAO";
+            "br.com.pogamadores.tutoriais.wear.receiver.acao.EXEMPLO_ACAO";
 
     public static PendingIntent exemploPedingIntent(Context context, int messageResId) {
         Intent intent = new Intent(EXEMPLO_ACAO)
@@ -28,7 +27,7 @@ public class NotificacoesReceiver extends BroadcastReceiver {
         return pendingIntent;
     }
 
-    public NotificacoesReceiver(){}
+    public NotificacoesReceiver(){super();}
 
     @Override
     public void onReceive(Context context, Intent intent) {
