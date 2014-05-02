@@ -2,8 +2,6 @@ package br.com.pogamadores.tutoriais.wear.ui.activity;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import br.com.pogamadores.tutoriais.wear.R;
 import br.com.pogamadores.tutoriais.wear.ui.fragment.HomeFragment;
@@ -20,21 +18,5 @@ public class Principal extends ActionBarActivity {
                     .add(R.id.container, new HomeFragment())
                     .commit();
         }
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.principal, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }
