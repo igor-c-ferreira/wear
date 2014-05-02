@@ -93,6 +93,9 @@ public class NotificacaoBuilder
     }
 
     protected static Notification finalizarNotificacao(NotificationCompat.Builder builder, WearableNotifications.Action acao, Notification[] paginas) {
+
+        builder.setPriority(Notification.PRIORITY_DEFAULT);
+
         WearableNotifications.Builder wearBuilder = new WearableNotifications.Builder(builder);
         wearBuilder.setLocalOnly(false);
         if(acao != null) {
