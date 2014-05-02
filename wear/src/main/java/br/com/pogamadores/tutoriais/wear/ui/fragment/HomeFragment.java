@@ -23,6 +23,7 @@ public class HomeFragment extends Fragment
         associarAcao(rootView.findViewById(R.id.btn_notificacao_texto), NotificacaoBuilder.NOTIFICACAO_BIG_TEXT);
         associarAcao(rootView.findViewById(R.id.btn_notificacao_imagem), NotificacaoBuilder.NOTIFICACAO_IMAGEM);
         associarAcao(rootView.findViewById(R.id.btn_notificacao_acao), NotificacaoBuilder.NOTIFICACAO_ACAO);
+        associarAcao(rootView.findViewById(R.id.btn_notificacao_acao_aberta), NotificacaoBuilder.NOTIFICACAO_ACAO_ABERTA);
 
         return rootView;
     }

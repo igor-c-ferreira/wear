@@ -26,4 +26,5 @@ Aliquam ut nibh metus. Vivamus sed mauris egestas, lacinia sem ut, varius purus.
     <string name="nao">Não</string>
     <string name="exemplo_acao">Exemplo Ação</string>
     <string name="notificacao_acao">Notificação com ação</string>
+    <string name="notificacao_acao_aberta">Notificação com ação aberta</string>
 </resources>

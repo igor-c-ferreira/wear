@@ -37,8 +37,10 @@ public class NotificacoesReceiver extends BroadcastReceiver {
             String mensagem = intent.getStringExtra(EXTRA_MENSAGEM);
             String retorno = intent.getStringExtra(EXTRA_RETORNO);
 
-            if (retorno != null) {
+            if (retorno != null && mensagem != null) {
                 mensagem = mensagem + ": \"" + retorno + "\"";
+            } else if(retorno != null) {
+                mensagem = retorno;
             }
 
             if(mensagem != null && mensagem.trim().length() > 0)

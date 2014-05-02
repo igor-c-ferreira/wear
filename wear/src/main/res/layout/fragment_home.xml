@@ -37,4 +37,11 @@
         android:layout_height="wrap_content"
         android:padding="10dp"/>
 
+    <Button
+        android:id="@+id/btn_notificacao_acao_aberta"
+        android:text="@string/notificacao_acao_aberta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"/>
+
 </LinearLayout>
