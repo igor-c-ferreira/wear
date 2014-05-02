@@ -68,48 +68,6 @@ public class NotificacaoBuilder
     }
 
     /**
-     * <p>Método que cria a {@link android.app.Notification}
-     * com o tipo {@link android.support.v4.app.NotificationCompat.InboxStyle}</p>
-     * @param context   Contexto que executa a ação
-     * @return  {@link android.app.Notification} devidamente configurado
-     */
-    private static Notification buildNotificacaoInbox(Context context) {
-        NotificationCompat.Builder builder = construirBuilderSimples(context);
-
-        NotificationCompat.InboxStyle style = new NotificationCompat.InboxStyle();
-        style.addLine(context.getString(R.string.primeiro_item));
-        style.addLine(context.getString(R.string.segundo_item));
-        style.setBigContentTitle(context.getString(R.string.titulo_notificacao));
-        style.setSummaryText(context.getString(R.string.texto_exemplo));
-
-        builder.setStyle(style);
-
-        return finalizarNotificacao(builder, null, null);
-    }
-
-    /**
-     * <p>Método que cria a {@link android.app.Notification} com múltiplas páginas</p>
-     * @param context   Contexto que executa a ação
-     * @return  {@link android.app.Notification} devidamente configurado
-     */
-    private static Notification buildNotificacaoMultiplasPaginas(Context context) {
-        NotificationCompat.Builder builder = construirBuilderSimples(context);
-
-        Notification segundaPagina = new NotificationCompat.Builder(context)
-                .setContentTitle(context.getString(R.string.titulo_notificacao))
-                .setContentText(context.getString(R.string.primeiro_item))
-                .build();
-
-        Notification terceiraPagina = new NotificationCompat.Builder(context)
-                .setContentTitle(context.getString(R.string.titulo_notificacao))
-                .setContentText(context.getString(R.string.segundo_item))
-                .build();
-
-        return finalizarNotificacao(builder, null,
-                new Notification[]{segundaPagina, terceiraPagina});
-    }
-
-    /**
      * <p>Constrói o {@link android.support.v4.app.NotificationCompat.Builder}
      *  com os elementos básicos da {@link android.app.Notification}</p>
      * @param context   Contexto que executa a ação
@@ -117,13 +75,19 @@ public class NotificacaoBuilder
      */
     protected static NotificationCompat.Builder construirBuilderSimples(Context context) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
+                //Define um texto para aparecer na notificação
                 .setContentText(context.getResources().getString(R.string.texto_exemplo))
+                //Define um título para a mensagem
                 .setContentTitle(context.getResources().getString(R.string.titulo_notificacao))
+                //Define a imagem que aparecerá ao lado da mensagem
                 .setSmallIcon(R.drawable.ic_launcher)
+                //Define a imagem que aparecerá no fundo da mensagem (wear)
                 .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
                         R.drawable.ic_launcher))
+                //Define a intent que será chamada quando houver um tap na notificação
                 .setContentIntent(NotificacoesReceiver.exemploPendingIntent(context,
                         R.string.mensagem_retorno))
+                //Define a intent que será chamada quando a notificação for excluída
                 .setDeleteIntent(NotificacoesReceiver.exemploPendingIntent(context,
                         R.string.mensagem_exclusao));
         return builder;
@@ -142,20 +106,27 @@ public class NotificacaoBuilder
                                                        WearableNotifications.Action acao,
                                                        Notification[] paginas) {
 
+        //Define a prioridade que será passada para a notificação
         builder.setPriority(Notification.PRIORITY_DEFAULT);
 
+        //Cria um builder capaz que criar uma notificação executável no Wear
         WearableNotifications.Builder wearBuilder = new WearableNotifications.Builder(builder);
+        //Define se a notificação será apenas no celular ou não
         wearBuilder.setLocalOnly(false);
+
+        //Se houver uma ação, adiciona ela ao wear. (Exclusivo do wear)
         if(acao != null) {
             wearBuilder.addAction(acao);
         }
 
+        //Caso tenha sido especificado, adiciona páginas na notificação. (Exclusivo do wear)
         if(paginas != null) {
             for(Notification pagina : paginas) {
                 wearBuilder.addPage(pagina);
             }
         }
 
+        //Cria a notificação
         Notification notification = wearBuilder.build();
 
         if(notification != null) {
@@ -185,13 +156,65 @@ public class NotificacaoBuilder
         NotificationCompat.Builder builder = construirBuilderSimples(context);
 
         NotificationCompat.BigTextStyle style = new NotificationCompat.BigTextStyle();
+        //Define o texto que será passado no título da mensagem
         style.setBigContentTitle(context.getString(R.string.titulo_notificacao));
+        //Define o texto que será passado como resumo da mensagem
         style.setSummaryText(context.getString(R.string.texto_exemplo));
+        //Define o texto que será passado no corpo da mensagem
         style.bigText(context.getString(R.string.texto_grande));
 
         builder.setStyle(style);
 
         return finalizarNotificacao(builder, null, null);
+    }
+
+    /**
+     * <p>Método que cria a {@link android.app.Notification}
+     * com o tipo {@link android.support.v4.app.NotificationCompat.InboxStyle}</p>
+     * @param context   Contexto que executa a ação
+     * @return  {@link android.app.Notification} devidamente configurado
+     */
+    private static Notification buildNotificacaoInbox(Context context) {
+        NotificationCompat.Builder builder = construirBuilderSimples(context);
+
+        NotificationCompat.InboxStyle style = new NotificationCompat.InboxStyle();
+
+        //Adiciona itens à listagem
+        style.addLine(context.getString(R.string.primeiro_item));
+        style.addLine(context.getString(R.string.segundo_item));
+
+        //Define o título da mensagem
+        style.setBigContentTitle(context.getString(R.string.titulo_notificacao));
+        //Define o resumo da mensagem
+        style.setSummaryText(context.getString(R.string.texto_exemplo));
+
+        builder.setStyle(style);
+
+        return finalizarNotificacao(builder, null, null);
+    }
+
+    /**
+     * <p>Método que cria a {@link android.app.Notification} com múltiplas páginas</p>
+     * @param context   Contexto que executa a ação
+     * @return  {@link android.app.Notification} devidamente configurado
+     */
+    private static Notification buildNotificacaoMultiplasPaginas(Context context) {
+        NotificationCompat.Builder builder = construirBuilderSimples(context);
+
+        //Cria a notificação que será usada como página 2
+        Notification segundaPagina = new NotificationCompat.Builder(context)
+                .setContentTitle(context.getString(R.string.titulo_notificacao))
+                .setContentText(context.getString(R.string.primeiro_item))
+                .build();
+
+        //Cria a notificação que será usada como página 3
+        Notification terceiraPagina = new NotificationCompat.Builder(context)
+                .setContentTitle(context.getString(R.string.titulo_notificacao))
+                .setContentText(context.getString(R.string.segundo_item))
+                .build();
+
+        return finalizarNotificacao(builder, null,
+                new Notification[]{segundaPagina, terceiraPagina});
     }
 
     /**
@@ -204,9 +227,12 @@ public class NotificacaoBuilder
         NotificationCompat.Builder builder = construirBuilderSimples(context);
 
         NotificationCompat.BigPictureStyle style = new NotificationCompat.BigPictureStyle();
+        //Define a imagem que será usada no corpo da mensagem. Ou, plano de fundo (wear).
         style.bigPicture(BitmapFactory.decodeResource(context.getResources(),
                 R.drawable.ic_launcher));
+        //Define o título da mensagem
         style.setBigContentTitle(context.getString(R.string.titulo_notificacao));
+        //Define o resumo da mensagem
         style.setSummaryText(context.getString(R.string.texto_exemplo));
 
         builder.setStyle(style);
@@ -225,12 +251,14 @@ public class NotificacaoBuilder
     protected static Notification buildNotificacaoAcao(Context context) {
         NotificationCompat.Builder builder = construirBuilderSimples(context);
 
+        //Cria uma entrada com múltiplas escolhas
         RemoteInput input = new RemoteInput.Builder(NotificacoesReceiver.EXTRA_RETORNO)
                 .setLabel(context.getString(R.string.titulo_acao))
                 .setChoices(new String[] {context.getString(R.string.sim),
                         context.getString(R.string.nao)})
                 .build();
 
+        //Cria uma ação com ícone e intent de resposta
         WearableNotifications.Action acao = new WearableNotifications.Action.Builder(
                 R.drawable.ic_full_reply,
                 context.getString(R.string.exemplo_acao),
@@ -252,10 +280,12 @@ public class NotificacaoBuilder
     protected static Notification buildNotificacaoAcaoAberta(Context context) {
         NotificationCompat.Builder builder = construirBuilderSimples(context);
 
+        //Cria uma entrada livre. Ou seja, sem múltiplas escolhas
         RemoteInput entrada = new RemoteInput.Builder(NotificacoesReceiver.EXTRA_RETORNO)
                 .setLabel(context.getString(R.string.titulo_acao))
                 .build();
 
+        //Cria uma ação com ícone e intent de resposta
         WearableNotifications.Action acao = new WearableNotifications.Action.Builder(
                 R.drawable.ic_full_reply,
                 context.getString(R.string.exemplo_acao),
